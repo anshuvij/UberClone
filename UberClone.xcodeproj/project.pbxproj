@@ -14,6 +14,8 @@
 		16B22FB325A1F655006CCE9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B22FB125A1F655006CCE9C /* LaunchScreen.storyboard */; };
 		16B22FC325A1F816006CCE9C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B22FC225A1F816006CCE9C /* LoginController.swift */; };
 		16B22FE525A1FCF0006CCE9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B22FE425A1FCF0006CCE9C /* Extensions.swift */; };
+		16B22FE825A21982006CCE9C /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B22FE725A21982006CCE9C /* SignUpController.swift */; };
+		16B22FEB25A2212E006CCE9C /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B22FEA25A2212E006CCE9C /* AuthButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		16B22FB425A1F655006CCE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16B22FC225A1F816006CCE9C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		16B22FE425A1FCF0006CCE9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		16B22FE725A21982006CCE9C /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		16B22FEA25A2212E006CCE9C /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				16B22FC225A1F816006CCE9C /* LoginController.swift */,
+				16B22FE725A21982006CCE9C /* SignUpController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 		16B22FBE25A1F683006CCE9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				16B22FEA25A2212E006CCE9C /* AuthButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +186,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B22FE825A21982006CCE9C /* SignUpController.swift in Sources */,
+				16B22FEB25A2212E006CCE9C /* AuthButton.swift in Sources */,
 				16B22FA725A1F653006CCE9C /* AppDelegate.swift in Sources */,
 				16B22FC325A1F816006CCE9C /* LoginController.swift in Sources */,
 				16B22FA925A1F653006CCE9C /* SceneDelegate.swift in Sources */,

@@ -30,6 +30,7 @@ class LoginController: UIViewController {
        return view
     }()
     
+    
     private let emailTextField: UITextField = {
         return UITextField().textField(withPlaceHolder: "Email", isSecureEntry: false)
     }()
@@ -37,14 +38,10 @@ class LoginController: UIViewController {
     private let passwordTextField: UITextField = {
         return UITextField().textField(withPlaceHolder: "Password", isSecureEntry: true)
     }()
-    
-    private let loginButton : UIButton = {
-        let button = UIButton(type: .system)
+
+    private let loginButton : AuthButton = {
+        let button = AuthButton(type: .system)
         button.setTitle("Log In", for: .normal)
-        button.setTitleColor(UIColor(white: 1, alpha: 0.5), for: .normal)
-        button.backgroundColor = .mainBlueTint
-        button.layer.cornerRadius = 5
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         return button
     }()
@@ -55,17 +52,34 @@ class LoginController: UIViewController {
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor : UIColor.mainBlueTint]))
-        
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
         button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
     
     //MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        configureUI()
+        configureNavigationBar()
         
+    }
+    
+    //MARK: - Actions
+    
+    @objc func handleShowSignUp() {
+         let controller = SignUpController()
+        navigationController?.pushViewController(controller, animated: true)
+        
+    }
+    
+    //MARK: - Helpers
+    
+    func configureUI() {
         view.backgroundColor = .backgroundColor
+        
         
         view.addSubview(titleLabel)
         titleLabel.anchor(top:view.safeAreaLayoutGuide.topAnchor)
@@ -82,12 +96,12 @@ class LoginController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.centerX(inView: view)
         dontHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, height: 32)
-        
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle
+    func configureNavigationBar()
     {
-        return .lightContent
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.barStyle = .black
     }
 
 
