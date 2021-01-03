@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpController: UIViewController {
     
@@ -57,8 +58,8 @@ class SignUpController: UIViewController {
     
     private let accountTypeSegmentedControl : UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Rider","Driver"])
-        sc.backgroundColor = .backgroundColor
-        sc.tintColor = UIColor(white: 1, alpha: 0.87)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(white: 1, alpha: 0.87),NSAttributedString.Key.backgroundColor : UIColor.clear], for: .normal)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.backgroundColor : UIColor.clear], for: .selected)
         sc.selectedSegmentIndex = 0
         return sc
     }()
@@ -67,6 +68,7 @@ class SignUpController: UIViewController {
         let button = AuthButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handledSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -117,6 +119,27 @@ class SignUpController: UIViewController {
     //MARK: - Selectors
     @objc func handleShowLogIn() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handledSignUp() {
+        
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        guard let fullname = fullNameTextField.text else {return}
+        let accountTypeIndex = accountTypeSegmentedControl.selectedSegmentIndex
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("Failed to register user with errpr : \(error.localizedDescription)")
+                return
+            }
+            guard let uid  = result?.user.uid else { return }
+            let values = ["email" : email , "fullname" : fullname, "accountType" : accountTypeIndex] as [String : Any]
+            
+            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
+                print("sucessfully regiestered user and saved data")
+            }
+        }
     }
 }
 
